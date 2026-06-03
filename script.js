@@ -101,9 +101,95 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+  // --- Timeline Scroll Reveal Animation ---
+  const timelineCards = document.querySelectorAll('.timeline-card-wrap');
+  const revealObserverOptions = {
+    root: null,
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-active');
+      }
+    });
+  }, revealObserverOptions);
+
+  timelineCards.forEach(card => {
+    revealObserver.observe(card);
+  });
+
+
+  // --- Projects Slideshow Slider ---
+  const slider = document.getElementById('projects-slider');
+  const prevBtn = document.getElementById('prev-project');
+  const nextBtn = document.getElementById('next-project');
+  const dotsContainer = document.getElementById('slideshow-dots');
+  const projectCards = document.querySelectorAll('.project-card-minimal');
+  
+  let currentSlide = 0;
+  
+  function getVisibleCards() {
+    return Array.from(projectCards).filter(card => card.style.display !== 'none');
+  }
+
+  function updateSlider() {
+    const visibleCards = getVisibleCards();
+    if (visibleCards.length === 0) return;
+
+    if (currentSlide >= visibleCards.length) currentSlide = visibleCards.length - 1;
+    if (currentSlide < 0) currentSlide = 0;
+
+    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    updateDots(visibleCards.length);
+  }
+
+  function updateDots(totalVisible) {
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < totalVisible; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      if (i === currentSlide) dot.classList.add('active');
+      dot.setAttribute('data-slide', i);
+      dot.addEventListener('click', () => {
+        currentSlide = i;
+        updateSlider();
+      });
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      const visibleCards = getVisibleCards();
+      if (currentSlide > 0) {
+        currentSlide--;
+      } else {
+        currentSlide = visibleCards.length - 1;
+      }
+      updateSlider();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const visibleCards = getVisibleCards();
+      if (currentSlide < visibleCards.length - 1) {
+        currentSlide++;
+      } else {
+        currentSlide = 0;
+      }
+      updateSlider();
+    });
+  }
+
+  // Initialize Slider on Load
+  updateSlider();
+
+
   // --- Projects Category Filtering ---
   const filterButtons = document.querySelectorAll('.tab-btn');
-  const projectCards = document.querySelectorAll('.project-card-minimal');
 
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -128,6 +214,12 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 300);
         }
       });
+
+      // Reset slide and update layout when filtered
+      setTimeout(() => {
+        currentSlide = 0;
+        updateSlider();
+      }, 350); // wait for card fade transitions to complete
     });
   });
 
