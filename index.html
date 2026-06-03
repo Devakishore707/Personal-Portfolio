@@ -25,6 +25,7 @@
         <li><a href="#hero" class="nav-link active">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#journey" class="nav-link">Journey</a></li>
+        <li><a href="#certificates" class="nav-link">Certificates</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
@@ -200,6 +201,28 @@
     </div>
   </section>
 
+  <!-- Certificates Section -->
+  <section class="section" id="certificates">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Credentials</span>
+        <h2 class="section-title">Academic <span>Certifications</span></h2>
+      </div>
+      <div class="certificates-layout-grid">
+        <!-- Certificates can be added here in the future -->
+        <div class="certificate-placeholder-card">
+          <div class="cert-icon-holder">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L9 13.17l7.59-7.59L18 7l-9 9z"/></svg>
+          </div>
+          <div class="cert-info">
+            <h3>Certificate Placeholder</h3>
+            <p>Future Certification</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Projects Section -->
   <section class="section" id="projects">
     <div class="container">
@@ -348,15 +371,15 @@
         <div class="contact-card-minimal">
           <form id="contact-form" autocomplete="off">
             <div class="form-group-minimal">
-              <input type="text" class="input-minimal" id="form-name" placeholder=" " required>
+              <input type="text" class="input-minimal" id="form-name" name="entry.1946717949" placeholder=" " required>
               <label for="form-name" class="label-minimal">Your Name</label>
             </div>
             <div class="form-group-minimal">
-              <input type="email" class="input-minimal" id="form-email" placeholder=" " required>
+              <input type="email" class="input-minimal" id="form-email" name="entry.2098257983" placeholder=" " required>
               <label for="form-email" class="label-minimal">Email Address</label>
             </div>
             <div class="form-group-minimal">
-              <textarea class="input-minimal" id="form-message" placeholder=" " required></textarea>
+              <textarea class="input-minimal" id="form-message" name="entry.36432900" placeholder=" " required></textarea>
               <label for="form-message" class="label-minimal">Your Message</label>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
@@ -379,6 +402,18 @@
       <p>&copy; 2026 Devakishore S. Built with care | SRMIST BCA Generative AI. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Submission Success Modal -->
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal-box">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+      </div>
+      <h3>Message Sent</h3>
+      <p>Thank you! Your message has been successfully logged to my database sheet.</p>
+      <button class="btn btn-primary close-modal-btn" id="close-modal">Close</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

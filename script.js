@@ -224,9 +224,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  // --- Contact Form Submission ---
+  // --- Contact Form Submission & Google Form Integration ---
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
+  const successModal = document.getElementById('success-modal');
+  const closeModalBtn = document.getElementById('close-modal');
 
   if (contactForm && formStatus) {
     contactForm.addEventListener('submit', (e) => {
@@ -243,10 +245,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
       showStatus('Sending message...', 'info');
 
-      setTimeout(() => {
-        showStatus('Thank you! Your message has been sent successfully.', 'success');
+      // Build url-encoded payload for Google Forms
+      const formData = new URLSearchParams();
+      formData.append('entry.1946717949', name);
+      formData.append('entry.2098257983', email);
+      formData.append('entry.36432900', message);
+
+      fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSc5ZCj1E1xiPo6cRD_BHk_I5PsQcu9MtViCDVFPtLVzBH8n7A/formResponse', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData.toString()
+      })
+      .then(() => {
+        // Clear status text
+        formStatus.style.display = 'none';
+        
+        // Show modal popup
+        if (successModal) {
+          successModal.classList.add('visible');
+        }
+        
+        // Reset form inputs
         contactForm.reset();
-      }, 1500);
+      })
+      .catch((err) => {
+        console.error(err);
+        showStatus('Failed to send message. Please check connection and try again.', 'error');
+      });
+    });
+  }
+
+  // Handle Modal Closing
+  if (closeModalBtn && successModal) {
+    closeModalBtn.addEventListener('click', () => {
+      successModal.classList.remove('visible');
+    });
+
+    successModal.addEventListener('click', (e) => {
+      if (e.target === successModal) {
+        successModal.classList.remove('visible');
+      }
     });
   }
 

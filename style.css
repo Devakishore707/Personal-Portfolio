@@ -1175,3 +1175,139 @@ textarea.input-minimal {
   color: var(--color-text-muted);
   font-size: 0.8rem;
 }
+
+/* --- Certificates Section --- */
+.certificates-layout-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.certificate-placeholder-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: var(--transition-normal);
+}
+
+.certificate-placeholder-card:hover {
+  border-color: rgba(99, 102, 241, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.05);
+}
+
+.cert-icon-holder {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: rgba(99, 102, 241, 0.05);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.cert-icon-holder svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.cert-info h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 0.15rem;
+}
+
+.cert-info p {
+  font-size: 0.8rem;
+  color: var(--color-text-sub);
+}
+
+/* --- Modal Dialog Overlay --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 6, 13, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-box {
+  background: #0f1016;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: calc(100% - 3rem);
+  max-width: 440px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transform: translateY(30px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.visible .modal-box {
+  transform: translateY(0);
+}
+
+.modal-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #34d399;
+  margin: 0 auto 1.5rem auto;
+}
+
+.modal-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+.modal-box h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+}
+
+.modal-box p {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+  margin-bottom: 1.75rem;
+  line-height: 1.5;
+}
+
+.close-modal-btn {
+  width: 100%;
+  justify-content: center;
+}
+
