@@ -207,40 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateSlider();
 
 
-  // --- Projects Category Filtering ---
-  const filterButtons = document.querySelectorAll('.tab-btn');
-
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterButtons.forEach(button => button.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filterValue = btn.getAttribute('data-filter');
-
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filterValue === 'all' || category === filterValue) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 30);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(15px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 300);
-        }
-      });
-
-      // Reset slide and update layout when filtered
-      setTimeout(() => {
-        currentSlide = 0;
-        updateSlider();
-      }, 350); // wait for card fade transitions to complete
-    });
-  });
+  // Projects category filtering removed. Showing all projects by default.
 
 
   // --- Contact Form Submission & Google Form Integration ---
