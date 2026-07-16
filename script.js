@@ -3,10 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Dynamic Typing Effect ---
   const typingElement = document.getElementById('typing-text');
   const words = [
-    "BCA Generative AI Student",
     "Speech Assistant Developer",
-    "IoT & Embedded Tinkerer",
-    "SRMIST Tech Innovator"
+    "IoT & Embedded Tinkerer"
   ];
   let wordIndex = 0;
   let charIndex = 0;
