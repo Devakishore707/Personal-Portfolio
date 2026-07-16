@@ -1,44 +1,65 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Dynamic Typing Effect ---
-  const typingElement = document.getElementById('typing-text');
-  const words = [
-    "Speech Assistant Developer",
-    "IoT & Embedded Tinkerer"
-  ];
-  let wordIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  let typeSpeed = 100;
+  // --- Light/Dark Theme Switcher ---
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  
+  const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('portfolio-theme', newTheme);
+    });
+  }
 
-  function type() {
-    const currentWord = words[wordIndex];
+  // --- Custom Cursor ---
+  const cursorDot = document.getElementById('custom-cursor-dot');
+  const cursorRing = document.getElementById('custom-cursor-ring');
+  
+  let mouseX = 0;
+  let mouseY = 0;
+  let ringX = 0;
+  let ringY = 0;
+  
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
     
-    if (isDeleting) {
-      typingElement.textContent = currentWord.substring(0, charIndex - 1);
-      charIndex--;
-      typeSpeed = 50;
-    } else {
-      typingElement.textContent = currentWord.substring(0, charIndex + 1);
-      charIndex++;
-      typeSpeed = 100;
+    if (cursorDot) {
+      cursorDot.style.left = mouseX + 'px';
+      cursorDot.style.top = mouseY + 'px';
     }
-
-    if (!isDeleting && charIndex === currentWord.length) {
-      typeSpeed = 2000; // Pause at complete word
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-      typeSpeed = 400; // Pause before typing next word
+  });
+  
+  function updateRingPosition() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    
+    if (cursorRing) {
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
     }
-
-    setTimeout(type, typeSpeed);
+    
+    requestAnimationFrame(updateRingPosition);
   }
+  
+  updateRingPosition();
 
-  if (typingElement) {
-    type();
-  }
+  // Hover states for custom cursor
+  const cursorTargets = document.querySelectorAll('a, button, .project-card-minimal, .timeline-card-wrap, .interest-tag, .skill-pill, .hero-badge, .tab-btn');
+  cursorTargets.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      if (cursorRing) cursorRing.classList.add('cursor-hover');
+      if (cursorDot) cursorDot.classList.add('cursor-hover');
+    });
+    el.addEventListener('mouseleave', () => {
+      if (cursorRing) cursorRing.classList.remove('cursor-hover');
+      if (cursorDot) cursorDot.classList.remove('cursor-hover');
+    });
+  });
 
 
   // --- Mobile Navigation Menu ---

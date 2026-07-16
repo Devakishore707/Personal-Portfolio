@@ -29,6 +29,12 @@
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
+      <div class="theme-toggle-wrap">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light and dark theme">
+          <svg class="sun-icon" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.01c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24"><path d="M12.3 22c.5 0 .9-.4.9-.9 0-.2-.1-.4-.2-.6-1.4-1.6-2.2-3.7-2.2-5.9 0-4.9 3.9-8.9 8.7-8.9.3 0 .6 0 .9.1.4.1.8-.1.9-.5.2-.4.1-.9-.3-1.2C18.6 2.5 15.4 1 12 1 5.9 1 1 5.9 1 12s4.9 11 11 11zm1.3-19.1c2-.4 3.9.1 5.6 1.1-.9.6-1.7 1.5-2.2 2.5-1.1 2.3-1.1 4.9 0 7.2.5 1 1.3 1.9 2.2 2.5-1.7 1-3.6 1.5-5.6 1.1-3.6-.7-6.3-3.6-7-7.2-.6-3.6 1.1-7.2 4.1-9.1 1.2-.7 2.3-1.1 3.9-1.1z"/></svg>
+        </button>
+      </div>
       <button class="hamburger" id="hamburger" aria-label="Toggle Navigation Menu">
         <span></span>
         <span></span>
@@ -44,9 +50,10 @@
         <div class="status-badge">
           <span class="status-dot"></span> Open for collaboration & internships
         </div>
-        <h1 class="hero-name">Hi, I'm <br><span>Devakishore S</span></h1>
-        <div class="hero-type-wrap">
-          <span id="typing-text"></span><span class="type-cursor">|</span>
+        <h1 class="hero-name"><span>Devakishore S</span></h1>
+        <div class="hero-badges">
+          <span class="hero-badge"><span class="badge-dot badge-blue"></span>Speech Assistant Developer</span>
+          <span class="hero-badge"><span class="badge-dot badge-purple"></span>IoT & Embedded Tinkerer</span>
         </div>
         <p class="hero-desc">
           I am a second-year college student specializing in Generative AI. I love connecting smart AI services with responsive physical hardware devices to create practical applications.
@@ -408,6 +415,10 @@
       <button class="btn btn-primary close-modal-btn" id="close-modal">Close</button>
     </div>
   </div>
+
+  <!-- Custom Cursor Follower -->
+  <div class="cursor-dot" id="custom-cursor-dot"></div>
+  <div class="cursor-ring" id="custom-cursor-ring"></div>
 
   <script src="script.js"></script>
 </body>
